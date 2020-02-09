@@ -1,0 +1,330 @@
+/****************************
+
+Author : Davide Maccarrone
+Version : 0.2
+Project : utdrm-test
+
+****************************/
+
+/* Generic */
+
+[data-vis="hidden"] {
+    display: none;
+}
+
+.title,
+.subtitle {
+    display: block;
+    margin: 1rem auto;
+    text-align: center;
+}
+
+/* Bootstrap Fix */
+
+.alert {
+    margin-top: 1rem;
+}
+
+.alert.alert-primary:empty {
+    display: none;
+}
+
+/* Nav */
+ul.navbar-nav .dropdown-menu {
+    padding: 0;
+}
+
+ul.navbar-nav .dropdown-menu .btn-link {
+    display: block;
+    width: 100%;
+}
+
+footer {
+    padding: 1rem 0;
+    background-color: #212533;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: .9rem;
+    text-align: center;
+}
+
+/* 404 */
+
+.not-found {
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Layout - Poker */
+
+.button-container {
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.button-container > .btn {
+    margin: 1rem;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+/* Hands */
+
+ul.hands_list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+
+ul.hands_list > li {
+    margin: .5rem;
+    backface-visibility: hidden;
+    width: 100%;
+    min-height: 140px;
+    perspective: 1000px;
+}
+
+ul.hands_list > li .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 140px;;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+
+}
+
+ul.hands_list > li .card-inner .card-front, 
+ul.hands_list > li .card-inner .card-back {
+    background-color: #cecece;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: .4rem;
+
+}
+
+ul.hands_list > li .card-inner .card-back::after {
+    background-image: url(../img/poker/poker-symbols.png);
+    width: 20px;
+    height: 20px;
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: .5rem;
+    background-size: 40px 40px;
+    top: .5rem;
+}
+
+ul.hands_list > li .card-inner .card-back {
+    background-color: #ebebeb;
+    color: #000000;
+    line-height: 140px;
+    text-align: center;
+    font-size: 2rem;
+    transform: rotateY(180deg);
+    box-shadow: 0 0px 8px 1px rgba(0,0,0,.3), inset 0 0 0 1px #04040496;
+    -webkit-box-shadow: 0 0px 8px 1px rgba(0,0,0,.3), inset 0 0 0 1px #04040496;
+}
+
+ul.hands_list.active > li .card-inner,
+ul.hands_list:hover > li .card-inner {
+    transform: rotateY(180deg);
+}
+
+ul.hands_list > li.card_p.S .card-back::after{
+    background-position: 20px 0;    
+}
+
+ul.hands_list > li.card_p.D .card-back::after{
+    background-position: 20px 20px;    
+}
+
+ul.hands_list > li.card_p.C .card-back::after {
+    background-position: 0px 20px;
+}
+
+ul.hands_list > li.card_p.H .card-back::after {
+    background-position: 0 40px;    
+}
+
+/* Casino Categoryes */
+
+ul.category-list {
+    display: flex;
+    padding: 0;
+    list-style: none;
+    margin-top: 1rem;
+    border: 1px solid rgba(0,0,0,0.2);
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+}
+
+ul.category-list > li > a {
+    height: 64px;
+    color: #343a40;
+    display: block;
+    text-transform: uppercase;
+    padding: 1rem;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+ul.category-list > li > a.active {
+    background-color: #007bff;
+    color:#ffffff;
+}
+
+/* Casino Games */
+
+.col-casino {
+    display: none;
+    /* width: 0; */
+    visibility: hidden;
+    height: 0;
+    opacity: 0;
+    padding: 0 .25rem;
+    margin-bottom: .5rem;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+}
+
+.col-casino.active {
+    display: block;
+    /* width: auto; */
+    visibility: visible;
+    height: auto;
+    opacity: 1;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+}
+
+.col-casino .col-casino--item {
+    background: #212533;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-height: 195px;
+}
+
+.col-casino .col-casino--item::before {
+    content: 'United Remote';
+    position: absolute;
+    top: calc(50% - 20px);
+    left: 0;
+    right: 0;
+    text-align: center;
+    display: block;
+    color: #ffffff;
+}
+
+.col-casino .col-casino--img {
+    width: 100%;
+    min-height: 155px;
+    z-index: 2;
+}
+
+.col-casino .col-casino--name,
+.col-casino .col-casino--provider {
+    position: absolute;
+    display: block;
+    text-align: center;
+    width: 100%;
+    background: rgba(0,0,0,.5);
+    font-weight: bold;
+    color: #fff;
+    margin: 0 auto;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    z-index: 4;
+}
+
+.col-casino .col-casino--name {
+    top: 0;
+}
+
+.col-casino .col-casino--provider {
+    bottom: 0;
+}
+
+.col-casino .col-casino--btn {
+    position: absolute;
+    top: calc(50% - 20px);
+    width: calc(100% - 2rem);
+    display: block;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    min-width: 120px;
+    max-width: 180px;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    z-index: 4;
+}
+
+.col-casino:hover .col-casino--btn,
+.col-casino:hover .col-casino--name,
+.col-casino:hover .col-casino--provider {
+    opacity: 1;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+}
+
+/* Casino Iframe Modal */
+
+.modal.modal-game {
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.modal.modal-game .modal-dialog {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.modal.modal-game .modal-body {
+    padding: 0;
+}
+.modal.modal-game .modal-content {
+    max-width: 993px;
+    margin: 0 auto;
+}
+
+.modal.modal-game .modal-game--iframe {
+    min-height: 50vh;
+    width: 100%;
+    background-color: #000000;
+    color: #ffffff;
+    text-align: center;
+    line-height: 50px;
+}
+
+.modal.modal-game .btn-play {
+    position: absolute;
+    top: calc(50% - 20px);
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+    left: 0;
+    right: 0;
+    min-width: 120px;
+}
